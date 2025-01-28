@@ -1,11 +1,13 @@
-<div class="list-group">
+<div class="list-group" data-controller="contacts-list">
   <% contacts.each do |contact| %>
     <%= link_to contact.full_name,
       contact,
       class: "list-group-item list-group-item-action #{'active' if contact == selected_contact}",
       data: {
         turbo_frame: :contacts_details,
-        turbo_action: :advance
+        turbo_action: :advance,
+        contacts_list_target: 'contact',
+        action: 'click->contacts-list#highlight'
       }
     %>
   <% end %>
